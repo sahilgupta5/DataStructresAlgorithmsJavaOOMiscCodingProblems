@@ -1,4 +1,4 @@
-package com.datastructures;
+package com.datastructures.bst;
 
 import java.util.LinkedList;
 import java.util.Stack;

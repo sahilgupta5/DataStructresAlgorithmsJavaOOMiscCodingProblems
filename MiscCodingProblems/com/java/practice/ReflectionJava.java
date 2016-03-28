@@ -2,7 +2,7 @@ package com.java.practice;
 
 import java.lang.reflect.Method;
 
-import com.datastructures.BinarySearchTreeFunctions;
+import com.datastructures.bst.BinarySearchTreeFunctions;
 
 public class ReflectionJava {
 

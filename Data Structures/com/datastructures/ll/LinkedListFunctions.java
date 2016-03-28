@@ -1,4 +1,4 @@
-package com.datastructures;
+package com.datastructures.ll;
 
 public class LinkedListFunctions {
 

@@ -1,4 +1,4 @@
-package com.algorithms;
+package com.algorithms.sorting;
 
 import java.util.Arrays;
 import java.util.HashMap;
