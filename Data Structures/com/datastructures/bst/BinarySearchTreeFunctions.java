@@ -113,6 +113,155 @@ public class BinarySearchTreeFunctions<V> {
 		size++;
 	}
 
+	/**
+	 * Returns the largest node in the left sub-tree of the input node if left
+	 * tree exists, else returns null
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public Node<V> largestNodeInLeftSubTreeOfNode(Node<V> n) {
+		Node<V> current = n;
+		if (n.left != null) {
+			current = n.left;
+		} else {
+			return null;
+		}
+		while (current.right != null) {
+			current = current.right;
+		}
+
+		return current;
+	}
+
+	/**
+	 * Returns the smallest node in the right sub-tree of the input node if
+	 * right tree exists, else returns null
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public Node<V> smallestNodeInRightSubTreeOfNode(Node<V> n) {
+		Node<V> current = n;
+		if (n.right != null) {
+			current = n.right;
+		} else {
+			return null;
+		}
+		while (current.left != null) {
+			current = current.left;
+		}
+
+		return current;
+	}
+
+	@SuppressWarnings("unused")
+	public boolean iterativeDelete(Node<V> n, int key) {
+
+		if (n == null)
+			return true;
+
+		/*
+		 * Let's call the node to be deleted D, it's child C and parent P.
+		 * 
+		 * 1. Maintain a reference to parent and current node itself. Keep on
+		 * looping until you find D.
+		 * 
+		 * 2. Check the number of children D has. If D has no children, simply
+		 * mark the parent's reference to the node to be deleted D as null. If D
+		 * has 1 child, make D's parent P point to C.
+		 * 
+		 * 3. If D has 2 children, then find the smallest node S in the left
+		 * sub-tree from root. Store this S object's key and value temporarily.
+		 * Delete S recursively because this should hit the condition above.
+		 * Now, replace D's value and key with S's temporary key and value.
+		 */
+
+		Node<V> P = null;
+		Node<V> D = n;
+
+		while (D.Key != key) {
+			P = D;
+			if (key > D.Key) {
+				D = D.right;
+			} else {
+				D = D.left;
+			}
+		}
+
+		/*
+		 * Compiler may think this will not be hit, but if the key passed to be
+		 * deleted doesn't match any value, then D will become null as a result
+		 * of the loop.
+		 */
+		if (D == null) {
+			return false;
+		}
+
+		/*
+		 * Case with 0 children.
+		 */
+		if (D.left == null && D.right == null) {
+			/*
+			 * The case where root is the only node that is left in the tree and
+			 */
+			if (P == null && D.Key == key) {
+				D = null;
+			}
+			if (P.left != null && P.left.Key == D.Key) {
+				P.left = null;
+			} else {
+				P.right = null;
+			}
+			return true;
+		}
+		/*
+		 * Case with 1 child.
+		 */
+		if (P != null) {
+			if (D.left == null) {
+				/*
+				 * D.right cannot be null and D has only one child to right
+				 */
+				if (P.left.Key == D.Key) {
+					P.left = D.right;
+				} else {
+					P.right = D.right;
+				}
+				return true;
+			} else {
+				/*
+				 * D.left cannot be null and D has only one child to left
+				 */
+				if (P.left.Key == D.Key) {
+					P.left = D.left;
+				} else {
+					P.right = D.left;
+				}
+				return true;
+			}
+		}
+
+		/*
+		 * Case with 2 children.
+		 */
+		Node<V> S = largestNodeInLeftSubTreeOfNode(this.root);
+
+		if (S == null) {
+			S = smallestNodeInRightSubTreeOfNode(this.root);
+		}
+
+		int sKey = S.Key;
+		V sValue = S.Val;// create deep copy?
+
+		iterativeDelete(root, S.Key);
+
+		D.Key = sKey;
+		D.Val = sValue;
+
+		return true;
+	}
+
 	public void recursiveInsert(int k, V v) {
 	}
 
@@ -243,8 +392,7 @@ public class BinarySearchTreeFunctions<V> {
 			return true;
 		// n1.left != null && n1.right != null && n2.left != null
 		// && n2.right != null
-		if (n1.Val.equals(n2.Val) && n1.left.Val.equals(n2.right.Val)
-				&& n1.right.Val.equals(n2.left.Val)) {
+		if (n1.Val.equals(n2.Val) && n1.left.Val.equals(n2.right.Val) && n1.right.Val.equals(n2.left.Val)) {
 			recursiveIsMirrorValue(n1.left, n2.right);
 			recursiveIsMirrorValue(n1.right, n2.left);
 		}
@@ -280,8 +428,8 @@ public class BinarySearchTreeFunctions<V> {
 	}
 
 	public boolean isBalanced(Node<V> n) {
-		if (n == null || isBalanced(n.left) && isBalanced(n.right)
-				&& (Math.abs(getHeight(n.left) - getHeight(n.right)) <= 1))
+		if (n == null
+				|| isBalanced(n.left) && isBalanced(n.right) && (Math.abs(getHeight(n.left) - getHeight(n.right)) <= 1))
 			return true;
 		return false;
 	}
@@ -290,32 +438,34 @@ public class BinarySearchTreeFunctions<V> {
 		// testBSTTraveralAndFunctions();
 		// testMirror();
 		// testHeight();
-		testBalance();
+		// testBalance();
+		testInsertionsAndRemovals();
 
-		BinarySearchTreeFunctions<Integer> sortedBalanced = new BinarySearchTreeFunctions<Integer>();
-		int[] sortedArray = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144,
-				233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711,
-				28657, 46368, 75025, 121393, 196418, 317811 };
-
-		for (int i = 0; i < sortedArray.length; i++) {
-			for (int j = 0; j < sortedArray.length; j++) {
-				if (sortedArray[j] != Integer.MIN_VALUE) {
-					sortedBalanced.recursiveInsert(sortedArray[j], new Integer(
-							sortedArray[j]));
-					sortedArray[j] = Integer.MIN_VALUE;
-					sortedBalanced.recursiveInsert(sortedArray[2 * j + 1],
-							new Integer(sortedArray[2 * j + 1]));
-					sortedArray[2 * j + 1] = Integer.MIN_VALUE;
-					sortedBalanced.recursiveInsert(sortedArray[2 * j + 2],
-							new Integer(sortedArray[2 * j + 2]));
-					sortedArray[2 * j + 2] = Integer.MIN_VALUE;
-				}
-			}
-		}
-
-		for (int i : sortedArray) {
-			System.out.println(i);
-		}
+		// BinarySearchTreeFunctions<Integer> sortedBalanced = new
+		// BinarySearchTreeFunctions<Integer>();
+		// int[] sortedArray = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144,
+		// 233, 377, 610, 987, 1597, 2584, 4181, 6765,
+		// 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811 };
+		//
+		// for (int i = 0; i < sortedArray.length; i++) {
+		// for (int j = 0; j < sortedArray.length; j++) {
+		// if (sortedArray[j] != Integer.MIN_VALUE) {
+		// sortedBalanced.recursiveInsert(sortedArray[j], new
+		// Integer(sortedArray[j]));
+		// sortedArray[j] = Integer.MIN_VALUE;
+		// sortedBalanced.recursiveInsert(sortedArray[2 * j + 1], new
+		// Integer(sortedArray[2 * j + 1]));
+		// sortedArray[2 * j + 1] = Integer.MIN_VALUE;
+		// sortedBalanced.recursiveInsert(sortedArray[2 * j + 2], new
+		// Integer(sortedArray[2 * j + 2]));
+		// sortedArray[2 * j + 2] = Integer.MIN_VALUE;
+		// }
+		// }
+		// }
+		//
+		// for (int i : sortedArray) {
+		// System.out.println(i);
+		// }
 	}
 
 	public static void testBSTTraveralAndFunctions() {
@@ -400,4 +550,40 @@ public class BinarySearchTreeFunctions<V> {
 		System.out.println("\n");
 		System.out.println(b.isBalanced(b.root));
 	}
+
+	public static void testInsertionsAndRemovals() {
+		BinarySearchTreeFunctions<String> b = new BinarySearchTreeFunctions<String>();
+		b.iterativeInsert(11, new String("S"));
+		b.iterativeInsert(6, new String("a"));
+		b.iterativeInsert(8, new String("h"));
+		b.iterativeInsert(19, new String("i"));
+		b.iterativeInsert(4, new String("l"));
+		b.iterativeInsert(10, new String("G"));
+		b.iterativeInsert(5, new String("u"));
+		b.iterativeInsert(17, new String("p"));
+		b.iterativeInsert(43, new String("t"));
+		b.iterativeInsert(49, new String("a"));
+		b.iterativeInsert(31, new String("Sahil Gupta"));
+
+		// System.out.println(b.iterativeFind(31));
+		// System.out.println("\n");
+
+		// b.recursiveInOrder(b.root);
+		// System.out.println("\n");
+
+		System.out.println(b.toStringBFS());
+
+		// Remove with 2 children
+		b.iterativeDelete(b.root, 11);
+		System.out.println(b.toStringBFS());
+
+		// Remove with 1 child
+		b.iterativeDelete(b.root, 4);
+		System.out.println(b.toStringBFS());
+
+		// Remove with 0 child
+		b.iterativeDelete(b.root, 17);
+		System.out.println(b.toStringBFS());
+	}
+
 }
