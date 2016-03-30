@@ -193,8 +193,10 @@ public class ClosestPoints {
 		/*
 		 * Prepare test case
 		 */
-		cp.points = new Point[10];
-		cp.minBHeap = new Point[10];
+
+		int numPoints = 500;
+		cp.points = new Point[numPoints];
+		cp.minBHeap = new Point[numPoints];
 
 		PriorityQueue<Point> pq = new PriorityQueue<Point>();
 
@@ -223,16 +225,18 @@ public class ClosestPoints {
 
 		System.out.println("\n\n");
 
-		int size = pq.size();
-		for (int i = 0; i < size; i++) {
+		/**
+		 * PriorityQueue Solution Below without custom implementation of queue
+		 * using min heap
+		 */
+
+		for (int i = 0; i < 100; i++) {
 			System.out.println(pq.poll());
 		}
 		System.out.println("\n\n");
 
-		for (int i = 0; i < size; i++) {
-			System.out.println(cp.deleteBinaryHeap());
-		}
-
-		// double[] d = cp.get100ClosestPointsToOrigin(cp.points);
+		// for (int i = 0; i < numPoints; i++) {
+		// System.out.println(cp.deleteBinaryHeap());
+		// }
 	}
 }
