@@ -172,22 +172,6 @@ public class ClosestPoints {
 		return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
 	}
 
-	// public double[] distanceBetweenPointsFromCenter(Point[] plane, Point
-	// center) {
-	// double D[] = new double[plane.length];
-	// for (int i = 0; i < plane.length; i++) {
-	// D[i] = getDistance(plane[i], center);
-	// }
-	// return D;
-	// }
-	//
-	// public double[] get100ClosestPointsToOrigin(Point[] plane) {
-	// Point origin = new Point(0, 0);
-	// double D[] = new double[plane.length];
-	// D = distanceBetweenPointsFromCenter(plane, origin);
-	// return D;
-	// }
-
 	public static void main(String args[]) {
 		ClosestPoints cp = new ClosestPoints();
 		/*
@@ -233,10 +217,5 @@ public class ClosestPoints {
 		for (int i = 0; i < 100; i++) {
 			System.out.println(pq.poll());
 		}
-		System.out.println("\n\n");
-
-		// for (int i = 0; i < numPoints; i++) {
-		// System.out.println(cp.deleteBinaryHeap());
-		// }
 	}
 }
