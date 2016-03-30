@@ -84,6 +84,12 @@ public class ClosestPoints {
 		return (2 * parentIndex) + 2;
 	}
 
+	/**
+	 * Helps in inserting value in the minimum heap.
+	 * 
+	 * @param p
+	 *            Point to insert
+	 */
 	public void insertBinaryHeap(Point p) {
 		// @formatter:off
 		/*
@@ -104,6 +110,11 @@ public class ClosestPoints {
 		}
 	}
 
+	/**
+	 * Deletes or polls or dequeues the top most element from the queue.
+	 * 
+	 * @return Point which is dequeued
+	 */
 	public Point deleteBinaryHeap() {
 		// @formatter:off
 		/*
