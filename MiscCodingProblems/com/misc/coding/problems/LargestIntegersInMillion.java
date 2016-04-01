@@ -1,13 +1,11 @@
 package com.misc.coding.problems;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 /**
- * You have an array of 1 million integers. Write routine to find the 10 largest
+ * You have an array of 1 million integers. Write routine to find the N largest
  * numbers in this array.
  * 
  * @author sahilgupta
@@ -16,43 +14,48 @@ import java.util.Random;
 
 public class LargestIntegersInMillion {
 
-	public LinkedList<Integer> getLargest10(int[] arr) {
-		if (arr == null || arr.length < 10)
+	public int[] getLargestN(int[] arr, int n) {
+		if (arr == null || arr.length < 10 || n > arr.length)
 			return null;
 
-		// smallest elements are stored in the beginnning of the queue towards
-		// the head
-		LinkedList<Integer> largest10 = new LinkedList<Integer>();
+		// using a min heap where minimum numbers are stored at the root, we
+		// will remove the smallest when we find a larger number in the array
+		PriorityQueue<Integer> largestN = new PriorityQueue<Integer>();
 
-		for (int i = 0; i < 10; i++) {
-			largest10.add(0);
+		for (int i = 0; i < n; i++) {
+			largestN.add(arr[i]);
 		}
 
-		for (int i = 0; i < arr.length; i++) {
-			// if the number is greater push at the end of queue and remove the
-			// head or beginning of queue
-			if (largest10.peek() < arr[i]) {
-				largest10.poll();
-				largest10.addLast(arr[i]);
+		for (int i = n; i < arr.length; i++) {
+			if (largestN.peek() < new Integer(arr[i])) {
+				largestN.poll();
+				largestN.add(arr[i]);
 			}
 		}
 
-		return largest10;
+		int[] largest = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			largest[i] = largestN.poll();
+		}
+		return largest;
 	}
 
 	public static void main(String args[]) {
 
-		int size = 100;
+		int size = 1000000;
 		Random r = new Random();
 		int[] test = new int[size];
 		for (int i = 0; i < size; i++) {
-			test[i] = r.nextInt(1000);
+			test[i] = r.nextInt(1000000);
 		}
 
-		LargestIntegersInMillion lim = new LargestIntegersInMillion();
-		LinkedList<Integer> l = lim.getLargest10(test);
+		int n = 10;
 
-		for (Integer i : l) {
+		LargestIntegersInMillion lim = new LargestIntegersInMillion();
+		int[] l = lim.getLargestN(test, n);
+
+		for (int i : l) {
 			System.out.println(i);
 		}
 
@@ -60,8 +63,8 @@ public class LargestIntegersInMillion {
 
 		System.out.println("\n\n\n");
 
-		for (int i = 0; i < 10; i++) {
-			System.out.println(test[size - i - 1]);
+		for (int i = 0; i < n; i++) {
+			System.out.println(test[size - n + i]);
 		}
 	}
 }
