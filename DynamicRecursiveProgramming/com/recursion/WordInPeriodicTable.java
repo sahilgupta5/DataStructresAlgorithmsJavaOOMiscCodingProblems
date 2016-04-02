@@ -1,4 +1,4 @@
-package com.misc.coding.problems;
+package com.recursion;
 
 import java.util.HashSet;
 
@@ -11,11 +11,11 @@ import java.util.HashSet;
  *
  */
 
-public class WordFromPeriodicTable {
+public class WordInPeriodicTable {
 
 	HashSet<String> pt;// HashSet representing periodic table
 
-	public WordFromPeriodicTable(HashSet<String> pt) {
+	public WordInPeriodicTable(HashSet<String> pt) {
 		this.pt = pt;
 	}
 
@@ -32,7 +32,6 @@ public class WordFromPeriodicTable {
 			return true;
 		if (word.equals(""))
 			return false;
-		int ind = 0;
 		isWordFromPeriodTable(word, bInd - 1);
 		return false;
 	}
@@ -53,12 +52,12 @@ public class WordFromPeriodicTable {
 		pt.add(new String("Li").toLowerCase());
 		pt.add(new String("B").toLowerCase());
 		pt.add(new String("Ni").toLowerCase());
-		WordFromPeriodicTable wpt = new WordFromPeriodicTable(pt);
+		WordInPeriodicTable wpt = new WordInPeriodicTable(pt);
 
-		wpt.isWordFromPeriodTable(word.toLowerCase());
-		wpt.isWordFromPeriodTable(word1.toLowerCase());
-		wpt.isWordFromPeriodTable(word2.toLowerCase());
-		wpt.isWordFromPeriodTable(word3.toLowerCase());
+		wpt.isWordFromPeriodTable(word.toLowerCase(), 0);
+		wpt.isWordFromPeriodTable(word1.toLowerCase(), 0);
+		wpt.isWordFromPeriodTable(word2.toLowerCase(), 0);
+		wpt.isWordFromPeriodTable(word3.toLowerCase(), 0);
 	}
 
 }
