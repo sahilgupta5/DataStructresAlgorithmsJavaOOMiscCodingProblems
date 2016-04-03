@@ -1,4 +1,4 @@
-package com.java.practice.oo.programming.example;
+package com.java.practice.oo.zoo.example;
 
 public class Fish extends ColdBlooded {
 
