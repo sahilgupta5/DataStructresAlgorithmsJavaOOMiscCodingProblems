@@ -22,18 +22,24 @@ public class WordInPeriodicTable {
 	/**
 	 * @param word
 	 *            Convert the word to lower case before passing
-	 * @param bInd
-	 *            The beginning index on where to check the string from
 	 * @return true or false depending on if the word can be composed from
 	 *         periodic table
 	 */
-	public boolean isWordFromPeriodTable(String word, int bInd) {
-		if (pt.contains(word))
-			return true;
-		if (word.equals(""))
-			return false;
-		isWordFromPeriodTable(word, bInd - 1);
-		return false;
+	public boolean isWordFromPeriodTable(String word) {
+		HashSet<String> symbols = new HashSet<String>();
+
+		for (int i = 0; i < word.length(); i++) {
+			symbols.add(word.substring(i, i));// 1 character
+			symbols.add(word.substring(i, i + 1));// 2 characters
+		}
+
+		for (String s : symbols) {
+			if (!pt.contains(s)) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public static void main(String args[]) {
@@ -54,10 +60,10 @@ public class WordInPeriodicTable {
 		pt.add(new String("Ni").toLowerCase());
 		WordInPeriodicTable wpt = new WordInPeriodicTable(pt);
 
-		wpt.isWordFromPeriodTable(word.toLowerCase(), 0);
-		wpt.isWordFromPeriodTable(word1.toLowerCase(), 0);
-		wpt.isWordFromPeriodTable(word2.toLowerCase(), 0);
-		wpt.isWordFromPeriodTable(word3.toLowerCase(), 0);
+		System.out.println(wpt.isWordFromPeriodTable(word.toLowerCase()));
+		System.out.println(wpt.isWordFromPeriodTable(word1.toLowerCase()));
+		System.out.println(wpt.isWordFromPeriodTable(word2.toLowerCase()));
+		System.out.println(wpt.isWordFromPeriodTable(word3.toLowerCase()));
 	}
 
 }
