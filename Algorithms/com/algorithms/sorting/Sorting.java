@@ -1,4 +1,5 @@
 package com.algorithms.sorting;
+
 import java.util.Arrays;
 
 public class Sorting {
@@ -145,23 +146,24 @@ public class Sorting {
 			System.out.print(i + " ");
 		}
 		Arrays.sort(arrUse);
-		System.out.print("\nAre they equal? " + Arrays.equals(arr, arrUse)
-				+ "\n");
+		System.out.print(
+				"\nAre they equal? " + Arrays.equals(arr, arrUse) + "\n");
 		System.out.print("\n");
 
 		int[] arr1 = { 1, 7, 4, 3, 7, -10, 10, 3, 89, 12, 100, -35, 63, -51 };
-		int[] arr1Use = { 1, 7, 4, 3, 7, -10, 10, 3, 89, 12, 100, -35, 63, -51 };
+		int[] arr1Use = { 1, 7, 4, 3, 7, -10, 10, 3, 89, 12, 100, -35, 63,
+				-51 };
 		s.mergeSort(arr1);
 		for (int i : arr1) {
 			System.out.print(i + " ");
 		}
 		Arrays.sort(arr1Use);
-		System.out.print("\nAre they equal? " + Arrays.equals(arr1, arr1Use)
-				+ "\n");
+		System.out.print(
+				"\nAre they equal? " + Arrays.equals(arr1, arr1Use) + "\n");
 		System.out.print("\n");
 
-		int[] arr2 = { 1, 7, 4, 3, 7, -71, -28, 26, 2, -44, -20, 89, 17, 40,
-				-5, -35, 63, -51 };
+		int[] arr2 = { 1, 7, 4, 3, 7, -71, -28, 26, 2, -44, -20, 89, 17, 40, -5,
+				-35, 63, -51 };
 		int[] arr2Use = { 1, 7, 4, 3, 7, -71, -28, 26, 2, -44, -20, 89, 17, 40,
 				-5, -35, 63, -51 };
 		s.quickSort(arr2);
@@ -169,19 +171,20 @@ public class Sorting {
 			System.out.print(i + " ");
 		}
 		Arrays.sort(arr2Use);
-		System.out.print("\nAre they equal? " + Arrays.equals(arr2, arr2Use)
-				+ "\n");
+		System.out.print(
+				"\nAre they equal? " + Arrays.equals(arr2, arr2Use) + "\n");
 		System.out.print("\n");
 
 		int[] arr3 = { 78, 21, -4, -71, 31, 54, -10, 65, -19, 89, 17, 40, -5 };
-		int[] arr3Use = { 78, 21, -4, -71, 31, 54, -10, 65, -19, 89, 17, 40, -5 };
+		int[] arr3Use = { 78, 21, -4, -71, 31, 54, -10, 65, -19, 89, 17, 40,
+				-5 };
 		s.selectionSort(arr3);
 		for (int i : arr3) {
 			System.out.print(i + " ");
 		}
 		Arrays.sort(arr3Use);
-		System.out.print("\nAre they equal? " + Arrays.equals(arr, arr3Use)
-				+ "\n");
+		System.out.print(
+				"\nAre they equal? " + Arrays.equals(arr, arr3Use) + "\n");
 		for (int i : arr3Use) {
 			System.out.print(i + " ");
 		}

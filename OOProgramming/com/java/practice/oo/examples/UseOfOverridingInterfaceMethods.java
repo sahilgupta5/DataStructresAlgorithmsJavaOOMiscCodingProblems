@@ -46,4 +46,5 @@ interface FireBreather extends Anim {
 }
 
 class Dragon implements EggLayer, FireBreather {
+
 }
