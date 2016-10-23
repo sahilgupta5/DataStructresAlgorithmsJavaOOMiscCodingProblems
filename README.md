@@ -27,3 +27,9 @@ These are custom implementations to just understand the concepts and implement q
 >  * Recursion - A child is running up a staircase with n steps, can hop either 1 step, 2 step or steps at a time. Implement a method to count how many possible ways the child can run up the stairs.
 >  * Recursion/DP - Finding if a word can be made using periodic table.
 >  * Implement an algorithm to print all valid (e.g. properly opened and closed) combinations of n-pairs of parentheses.
+
+####6. HackerRank Exercises and Solutions
+>  * ATM Machine and JUnit Tests - Java OO Design
+>  * List Insertion Visualization - HTML/CSS/JS
+>  * UML Diagram Design
+>  * Sub Array Product Problem - Dynammic Programming
