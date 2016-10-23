@@ -9,6 +9,7 @@ public class Account {
 	public Account(int accountNum, int pin, int currentBalance) {
 		this.accountNum = accountNum;
 		this.currentBalance = currentBalance;
+		this.pin = pin;
 	}
 
 	public boolean validatePin(int pin) {

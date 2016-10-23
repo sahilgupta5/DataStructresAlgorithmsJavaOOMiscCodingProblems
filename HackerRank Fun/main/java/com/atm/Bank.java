@@ -10,11 +10,19 @@ public class Bank {
 
 	// return the account for the corresponding account number
 	private Account getAccount(int accountNum) {
-		return accounts[accountNum];
+		for (Account a : accounts) {
+			if (a.getAccountNumber() == accountNum)
+				return a;
+		}
+		return null;
 	}
 
-	public boolean authenticateUser(int pin, int accountNum) {
-		return getAccount(accountNum).validatePin(pin);
+	public boolean authenticateUser(int accountNum, int pin) {
+		Account a = getAccount(accountNum);
+		if (a == null) {
+			return false;
+		}
+		return a.validatePin(pin);
 	}
 
 	public int getAvailableBalance(int accountNum) {

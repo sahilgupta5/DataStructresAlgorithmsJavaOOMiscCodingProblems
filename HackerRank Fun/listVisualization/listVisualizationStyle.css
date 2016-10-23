@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+.header {
+  background-color: #ffff00;
+  padding: 30px 40px;
+  color: black;
+  text-align: center;
+}
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+/* Make every third child red.*/
+ul li:nth-child(3n+1) {
+  background: #ff0000;
+}
+
+ul li:hover {
+  background: #ddd;
+}
+
+input {
+  border: none;
+  width: 75%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #55f;
+  float: bottom;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
