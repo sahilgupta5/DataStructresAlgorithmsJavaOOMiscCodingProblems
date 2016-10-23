@@ -36,7 +36,7 @@ ul li {
 }
 
 /* Make every third child red.*/
-ul li:nth-child(3n+1) {
+ul li:nth-child(3n) {
   background: #ff0000;
 }
 
